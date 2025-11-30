@@ -1,10 +1,10 @@
-# SOLID 
-// SOLID peincipels :
+#   SOLID Principles in C#
 
-// 1- Single Responsibility Principle:
+## 1️⃣ Single Responsibility Principle (SRP)
 
-// Bad 
+### ❌ Bad Example
 
+```csharp
 public class Employee
 {
     public double CalculateSalary(int hours)
@@ -17,9 +17,11 @@ public class Employee
         Console.WriteLine("Saving to DB...");
     }
 }
+```
 
-// Good 
+### ✅ Good Example
 
+```csharp
 public class SalaryCalculator
 {
     public double CalculateSalary(int hours)
@@ -35,12 +37,15 @@ public class EmployeeRepository
         Console.WriteLine("Saving to DB...");
     }
 }
+```
 
+---
 
-// 2- Open/Closed Principle :
+## 2️⃣ Open / Closed Principle (OCP)
 
-// Bad 
+### ❌ Bad Example
 
+```csharp
 public class Payment
 {
     public void Pay(string type)
@@ -51,10 +56,11 @@ public class Payment
             Console.WriteLine("Pay with Visa");
     }
 }
+```
 
+### ✅ Good Example
 
-// Good 
-
+```csharp
 public abstract class PaymentMethod
 {
     public abstract void Pay();
@@ -83,12 +89,15 @@ public class PaymentProcessor
         method.Pay();
     }
 }
+```
 
+---
 
-// 3- Liskov Substitution Principle
+## 3️⃣ Liskov Substitution Principle (LSP)
 
-// Bad 
+### ❌ Bad Example
 
+```csharp
 public class Rectangle
 {
     public virtual int Width { get; set; }
@@ -112,9 +121,11 @@ public class Square : Rectangle
         set { base.Width = base.Height = value; }
     }
 }
+```
 
-// Good 
+### ✅ Good Example
 
+```csharp
 public interface IShape
 {
     int Area();
@@ -140,11 +151,15 @@ public class Square : IShape
         return Side * Side;
     }
 }
+```
 
+---
 
-// 4- Interface Segregation Principle
+## 4️⃣ Interface Segregation Principle (ISP)
 
-// Bad 
+### ❌ Bad Example
+
+```csharp
 public interface IWorker
 {
     void Work();
@@ -155,14 +170,16 @@ public class Robot : IWorker
 {
     public void Work() { }
 
-    public void Eat()      
+    public void Eat()
     {
         throw new NotImplementedException();
     }
 }
+```
 
+### ✅ Good Example
 
-// Good 
+```csharp
 public interface IWorkable
 {
     void Work();
@@ -172,6 +189,7 @@ public interface IEatable
 {
     void Eat();
 }
+
 public class Human : IWorkable, IEatable
 {
     public void Work() { }
@@ -182,11 +200,15 @@ public class Robot : IWorkable
 {
     public void Work() { }
 }
+```
 
+---
 
-// 5- Dependency Inversion Principle
+## 5️⃣ Dependency Inversion Principle (DIP)
 
-// Bad 
+### ❌ Bad Example
+
+```csharp
 public class EmailService
 {
     public void SendEmail(string msg)
@@ -204,9 +226,11 @@ public class Notification
         email.SendEmail(message);
     }
 }
+```
 
+### ✅ Good Example
 
-//Good 
+```csharp
 public interface IMessageService
 {
     void Send(string message);
@@ -242,3 +266,4 @@ public class Notification
         _service.Send(message);
     }
 }
+```
